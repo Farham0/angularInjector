@@ -16,6 +16,9 @@ import {
 import {
   Metric
 } from './Model/Metric';
+import { Reporters } from './services/Reporters';
+import { reporter1 } from './services/report1';
+import { reporter2 } from './services/Report2';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,12 @@ import {
         return new analyticService();
 
       }
+    },
+    {
+      provide:Reporters,useClass:reporter1,multi:true
+    },
+    {
+      provide:Reporters,useClass:reporter2,multi:true
     }
 
   ],
