@@ -6,7 +6,7 @@ import { inject } from '@angular/core';
 import { iconfig,appConfig } from './config/Iconfig';
 import { Reporters } from './services/Reporters';
 import { IReport } from './Model/IReport';
-
+import { httpCall} from './services/httpTest';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html', 
@@ -15,11 +15,13 @@ import { IReport } from './Model/IReport';
 export class AppComponent {
   constructor(private servic:analyticService,
               @Inject(appConfig) private _config:iconfig ,
-              @Inject(Reporters) private _reports:ReadonlyArray<IReport> ){
+              @Inject(Reporters) private _reports:ReadonlyArray<IReport>,
+              private _thisHttp:httpCall ){
     console.log(this._config);
     this._reports.forEach(rerportService => rerportService.send("hi"));
     var event:Metric ={param1:'test', param2:'param2'}     
     this.servic.recordEvent(event);
+    this._thisHttp.getLink();
   }
   title = 'testInjector';
 }

@@ -16,16 +16,20 @@ import {
 import {
   Metric
 } from './Model/Metric';
+import{ HttpClientModule} from '@angular/common/http'
+
 import { Reporters } from './services/Reporters';
 import { reporter1 } from './services/report1';
 import { reporter2 } from './services/Report2';
+import { httpCall} from './services/httpTest';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [{
       provide: analyticService,
@@ -45,6 +49,9 @@ import { reporter2 } from './services/Report2';
     {
       provide:Reporters,useClass:reporter2,multi:true
     }
+    ,
+    HttpClientModule,
+    httpCall
 
   ],
   bootstrap: [AppComponent]
