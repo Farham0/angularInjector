@@ -25,9 +25,11 @@ import { reporter2 } from './services/Report2';
 import { httpCall} from './services/httpTest';
 
 import {LoginComponent} from './login/login.component'
+import { loginGard} from './login/login-gard'
 
-const RouteList:Routes=[{path:'login',component:LoginComponent},
-                        {path:'login2',component:LoginComponent}];
+const RouteList:Routes=[{path:'login',component:LoginComponent, canActivate:[loginGard]},
+                        {path:'login2',component:LoginComponent},
+                        {path:'login2/*',component:LoginComponent}];
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ const RouteList:Routes=[{path:'login',component:LoginComponent},
     }
     ,
     HttpClientModule,
-    httpCall
+    httpCall,
+    loginGard
 
   ],
   bootstrap: [AppComponent]
